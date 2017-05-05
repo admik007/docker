@@ -1,0 +1,13 @@
+  mysql-ci:
+    restart: always
+    image: sameersbn/mysql:latest
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.6
+    volumes:
+      - /srv/volumes/mysql-ci:/var/lib/mysql:Z
+    environment:
+      - DB_USER=gitlab
+      - DB_PASS=gx2WB9nnVZqb
+      - DB_NAME=gitlabhq_production-ci
+      - DB_EXTENSION=pg_trgm
