@@ -1,0 +1,15 @@
+services:
+  redis:
+    restart: always
+    image: sameersbn/redis:latest
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.4
+    command:
+    - --loglevel warning
+    volumes:
+    - /srv/volumes/redis:/var/lib/redis:Z
+    environment:
+    - ftp_proxy=http://164.28.127.245:3128
+    - http_proxy=http://164.28.127.245:3128
+    - https_proxy=http://164.28.127.245:3128
