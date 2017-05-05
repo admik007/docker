@@ -1,0 +1,13 @@
+services:
+  nginx-rev_proxy:
+    restart: always
+    image: sameersbn/nginx:latest
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.2
+    volumes:
+    - /srv/volumes/nginx-rev-proxy/nginx.conf:/etc/nginx/nginx.conf
+    - /srv/volumes/nginx-rev-proxy/sites-enabled/:/etc/nginx/sites-enabled/:Z
+    ports:
+    - "80:80"
+    - "443:443"
