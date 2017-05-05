@@ -1,0 +1,31 @@
+# Create work directory
+mkdir image
+# Go to work directory
+cd image/
+# Create Dockerfile
+vi Dockerfile
+# Add value to 'Dockerfile'
+FROM jessie
+ENV ftp_proxy http://ip.ad.dr.es:port
+ENV http_proxy http://ip.ad.dr.es:port
+ENV https_proxy http://ip.ad.dr.es:port
+RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
+CMD while true; do sleep 10; done
+# Download the image
+debootstrap jessie jessie
+# Import the image to docker
+tar -C jessie -c . | docker import - jessie
+# Create docker image
+docker build -t jessie .
+# Add tag to docker image and version (hash will be generated, us it)
+docker tag 900dbbf5c5b8 admik/debian-jessie:latest
+# Login to hub.docker.com with your credentials
+docker login
+# Push your created image
+ docker push user/debian-jessie
+# Validate your image 
+docker search user
+# Download your image 
+docker pull user/debian-jessie:latest
+# Run your image
+docker run -it jessie
