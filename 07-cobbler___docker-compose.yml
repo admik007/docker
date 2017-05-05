@@ -1,0 +1,20 @@
+services:
+  cobbler:
+    restart: always
+    image: honnix/cobbler
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.8
+    volumes:
+     - /srv/volumes/cobbler/etc/cobbler:/etc/cobbler:Z
+     - /srv/volumes/cobbler/var/lib/cobbler:/var/lib/cobbler:Z
+     - /srv/volumes/cobbler/var/www/cobbler:/var/www/cobbler:Z
+     - /srv/volumes/cobbler/var/cache/cobbler:/var/cache/cobbler:Z
+     - /srv/volumes/cobbler/var/lib/tftpboot:/var/lib/tftpboot:Z
+     - /srv/volumes/cobbler/etc/httpd/:/etc/httpd/:Z
+    ports:
+     - "69/udp:69/udp"
+    environment:
+     - ftp_proxy=http://164.28.127.245:3128
+     - http_proxy=http://164.28.127.245:3128
+     - https_proxy=http://164.28.127.245:3128
