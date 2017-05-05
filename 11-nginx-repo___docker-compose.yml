@@ -1,0 +1,11 @@
+  nginx-repo:
+    restart: always
+    image: sameersbn/nginx:1.10.3
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.12
+    volumes:
+      - /srv/volumes/nginx-repo/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /srv/volumes/nginx-repo/etc/nginx/sites-enabled:/etc/nginx/sites-enabled/:Z
+      - /srv/volumes/nginx-repo/etc/nginx/certs/:/etc/certs/:Z
+      - /srv/volumes/nginx-repo/www/:/var/www/:Z
