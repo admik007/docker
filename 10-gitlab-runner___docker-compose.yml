@@ -1,0 +1,11 @@
+  gitlab-runner:
+    restart: always
+    image: gitlab/gitlab-runner:latest
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.11
+    depends_on:
+      - gitlab
+      - gitlab-ci
+    volumes:
+      - /srv/volumes/gitlab-runner/etc/gitlab-runner:/etc/gitlab-runner:Z
