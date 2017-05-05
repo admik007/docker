@@ -1,0 +1,12 @@
+  squid:
+    restart: always
+    image: sameersbn/squid:3.3.8-23
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.9
+    volumes:
+      - /srv/volumes/squid/var/lib/squid3:/var/lib/squid3:Z
+      - /srv/volumes/squid/var/log/squid3:/var/log/squid3:Z
+      - /srv/volumes/squid/etc/squid3:/etc/squid3:Z
+    ports:
+      - "3128:3128"
