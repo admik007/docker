@@ -1,0 +1,47 @@
+  gitlab-ci:
+    restart: always
+    image: sameersbn/gitlab-ci:8.0.5
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.10
+    depends_on:
+      - redis
+      - mysql-ci
+    ports:
+      - "8080:80"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TZ=Europe/Berlin
+      - DB_ADAPTER=mysql2
+      - DB_TYPE=mysql
+      - DB_HOST=mysql-ci
+      - DB_PORT=3306
+      - DB_USER=gitlab
+      - DB_PASS=gx2WB9nnVZqb
+      - DB_NAME=gitlabhq_production-ci
+      - DB_EXTENSION=pg_trgm
+### This value is base on: Open GITLAB -> Admin Area -> Applications -> New Application -> Name: CI (or whatever), Redirect URL: url generated base on CI (http://6.151.101.241:8080) 
+#      - GITLAB_APP_ID=bdab7785b9df4d6f66672dff23f7ac0f84824c3713d89a8690f11d4afdb61abc
+#      - GITLAB_APP_SECRET=123a893e3af270b0785e39354df3fb3beef34c82995b0f6107784ccddea16c6f
+      - GITLAB_APP_ID=
+      - GITLAB_APP_SECRET=
+     
+      - GITLAB_CI_SECRETS_SESSION_KEY_BASE=M6KtZxsQQrPlvK9bJlTwHp32Vmjhsldm4FtdjSv5BGTBv2fwRCNqSxp9R5LnrsZM
+      - GITLAB_CI_SECRETS_DB_KEY_BASE=M6KtZxsQQrPlvK9bJlTwHp32Vmjhsldm4FtdjSv5BGTBv2fwRCNqSxp9R5LnrsZM
+      - GITLAB_CI_HOST=IP.AD.DR.ES
+      - GITLAB_CI_PORT=80
+      - GITLAB_CI_EMAIL=user@example.com
+      - GITLAB_CI_SUPPORT=user@example.com
+      - GITLAB_CI_NOTIFY_ON_BROKEN_BUILDS="true"
+      - GITLAB_CI_NOTIFY_PUSHER=false
+      - GITLAB_CI_BACKUPS=daily
+      - GITLAB_CI_BACKUP_TIME=01:00
+      - SMTP_ENABLED=true
+      - SMTP_DOMAIN=example.com
+      - SMTP_HOST=172.20.0.1
+      - SMTP_PORT=25
+      - SMTP_USER=mailer@example.com
+      - SMTP_PASS=password
+      - SMTP_STARTTLS=false
+      - SMTP_AUTHENTICATION=login
