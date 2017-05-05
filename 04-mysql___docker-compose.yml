@@ -1,0 +1,17 @@
+services:
+  mysql:
+    restart: always
+    image: sameersbn/mysql:latest
+    networks:
+      docker0:
+        ipv4_address: 172.20.0.5
+    volumes:
+    - /srv/volumes/mysql:/var/lib/mysql:Z
+    environment:
+    - ftp_proxy=http://164.28.127.245:3128
+    - http_proxy=http://164.28.127.245:3128
+    - https_proxy=http://164.28.127.245:3128
+    - DB_USER=gitlab
+    - DB_PASS=gx2WB9nnVZqb
+    - DB_NAME=gitlabhq_production
+    - DB_EXTENSION=pg_trgm
