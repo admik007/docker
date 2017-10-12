@@ -8,9 +8,9 @@ services:
     volumes:
     - /srv/volumes/mysql:/var/lib/mysql:Z
     environment:
-    - ftp_proxy=http://164.28.127.245:3128
-    - http_proxy=http://164.28.127.245:3128
-    - https_proxy=http://164.28.127.245:3128
+    - ftp_proxy=
+    - http_proxy=
+    - https_proxy=
     - DB_USER=gitlab
     - DB_PASS=gx2WB9nnVZqb
     - DB_NAME=gitlabhq_production
